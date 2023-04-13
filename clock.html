@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date-Time</title>
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai|Bree+Serif&display=swap" rel="stylesheet">
+</head>
+<style>
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    /* background-color: #59646875; */
+    background: conic-gradient(from -.5turn at bottom right, deeppink, cyan, rebeccapurple);
+    overflow: hidden;
+
+}
+
+.container{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 55%;
+    width: 50%;
+    border: 5px solid rgb(14, 13, 13);
+    border-radius: 50px;
+    /* background-color: rgb(9, 134, 93); */
+    background: conic-gradient(from -270deg at 75% 110%, fuchsia, floralwhite);
+    padding: 2% 3%;
+    /* overflow: hidden; */
+    overflow-x:hidden; 
+    overflow-y:auto; 
+}
+
+#time{
+    font-size: 2.5rem;
+    color:rgb(97, 11, 11);
+   
+    font-family: 'Bree Serif', serif;
+}
+a{
+    text-decoration: none;
+}
+#btn{
+    color: blueviolet;
+    padding: .9%;
+    background-color: black;
+    border-radius: 6px;
+    font-family: 'Baloo Bhai', cursive;
+    transition: 0.2s;
+}
+
+#btn:hover{    
+    color: black;
+    background-color:  blueviolet;
+}
+</style>
+<body>
+    <div class="container">
+        <div class="box">
+            <h1>Current time Is: <span id="time"></span></h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quidem autem consectetur debitis? Officia tenetur soluta quos velit, ea natus iure magnam praesentium corrupti doloribus odit, necessitatibus nemo voluptas! Consequatur dolorem quae nostrum ut.</p>
+            <br>
+            <p>We are here to show you the time for different countries</p>
+            <br>
+            <a id="btn" href="#" role="button">Browse Times</a>
+        </div>
+    </div>
+    
+
+    <script>
+        let a;
+        let date;
+        let time;
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        setInterval(() => {
+            a = new Date(); 
+            date = a.toLocaleDateString(undefined, options);
+            time = a.getHours() % 12 + ':' + a.getMinutes() + ':' + a.getSeconds();
+            document.getElementById('time').innerHTML = time + "<br>on " + date;
+        }, 1000);
+    </script>
+
+</body>
+</html>

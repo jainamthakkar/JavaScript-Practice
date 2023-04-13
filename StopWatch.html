@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Stop Watch</h1>
+        <h2><span class="min">00</span>:<span class="sec">00</span>:<span class="milli">00</span></h2>
+        <button class="start" onclick="start()">Start</button>
+        <button class="stop" onclick="stop()">Stop</button>
+        <button class="reset" onclick="reset()">Reset</button>
+    </div>
+
+    <script>
+
+        var milli = document.getElementsByClassName("milli")[0];
+        var sec = document.getElementsByClassName("sec")[0];
+        var min = document.getElementsByClassName("min")[0];
+
+        var sta = document.getElementsByClassName("start")[0];
+        var sto = document.getElementsByClassName("stop")[0];
+        var res = document.getElementsByClassName("res")[0];
+
+        var seconds = 0, milliseconds = 0, minutes = 0;
+        var timeInterval;
+
+        function timer(){
+
+            milliseconds++;
+            if(milliseconds <= 9){
+                milli.innerHTML = "0" + milliseconds;
+            }
+
+            if(milliseconds > 9){
+                milli.innerHTML = milliseconds;
+            }
+
+            if(milliseconds > 99){
+                seconds++;
+                
+                if(seconds <= 9){
+                    sec.innerHTML = "0" + seconds;
+                }
+
+                if(seconds > 9){
+                    sec.innerHTML = seconds;
+                }
+                milliseconds = 0;
+                milli.innerHTML = "0" + milliseconds;
+            }
+            
+            if(seconds <= 9){
+                sec.innerHTML = "0" + seconds;
+            }
+
+            if(seconds > 9){
+                sec.innerHTML = seconds;
+            }
+
+            if(seconds > 59){
+                minutes++;
+                
+                if(minutes <= 9){
+                    min.innerHTML = "0" + minutes;
+                }
+
+                if(minutes > 9){
+                    min.innerHTML = minutes;
+                }
+                seconds = 0;
+                seconds.innerHTML = "0" + seconds;
+            }
+
+            if(minutes <= 9){
+                min.innerHTML = "0" + minutes;
+            }
+
+            if(minutes <= 9){
+                min.innerHTML = "0" + minutes;
+            }
+
+        }
+
+        function start(){
+            timeInterval = setInterval(timer,10);
+        }
+
+        function reset(){
+            clearInterval(timeInterval);
+            seconds = "00";
+            milliseconds = "00";
+            minutes = "00";
+            milli.innerHTML = milliseconds;
+            sec.innerHTML = seconds;
+            min.innerHTML = minutes;
+            stop();
+        }
+
+        function stop(){
+            clearInterval(timeInterval);
+        }
+
+    </script>
+</body>
+</html>

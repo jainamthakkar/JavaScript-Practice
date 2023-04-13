@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pass The Message</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<style>
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color:  rgb(54, 55, 71);
+}
+
+.container{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 6px solid rgb(54, 55, 71);
+    /* background-color: grey; */
+    background: linear-gradient(#b8dafc, white);
+    border-radius: 40px;
+}
+
+.box{
+    text-align: center;
+    height: 60vh;
+    width: 80%;
+    border: 8px solid black;
+    border-radius: 40px;
+    background-color: rgba(41, 2, 133, 0.603);
+    color: beige;
+    padding: 5%;
+    overflow-y: auto;    
+}
+
+.btn{
+        color: rgba(6, 187, 219, 0.596);
+        background-color: rgb(0, 0, 0);
+        font-size: 1rem;
+        width: 100px;
+        height: 40px;
+        font-family: cursive;
+        font-weight: 600;
+        border: 3px solid rgb(255, 255, 255);
+        border-radius: 15px;
+        font-size: 1.3rem;
+        margin: 20px 0;
+        cursor: pointer;
+        text-align: center;
+    }
+
+.btn:hover{
+        background-color: rgba(6, 187, 219, 0.596);
+        color: rgb(0, 0, 0);
+        border: 3px solid rgb(0, 0, 0);
+    }
+
+h1{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    color: rgb(0, 0, 0);
+    font-weight: 800;
+}
+
+label{
+    color: rgb(255, 255, 255);
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.ic{
+    background-color:  rgba(255, 255, 255, 0.603);
+    /* background-color: w; */
+    border: 1px solid black;
+    /* margin: 1px; */
+    font-size: 145% !important;
+    padding-bottom: 3px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.input{
+    width: 60%;
+    height: 30px;
+    font-size: 1rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 10px;
+    border: 1px solid black;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 3px;
+}
+
+.result{
+    font-size: 1.5rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    text-align: center;
+}
+</style>
+
+<body>
+
+    <div class="container">
+        <div class="box">
+            <h1>Messenger</h1>
+            <label for="Message">Enter your Message : </label>
+            <span>
+                <button class="ic"><i class="fa fa-comments"></i></button><input type="text" placeholder="Enter some text bro..." class="input">
+            </span>
+            <div class="inner">
+                <button type="submit" class="btn" onclick="getMessage()">Send</button>
+                <p class="result"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        const input = document.getElementsByClassName("input")[0];
+
+        input.addEventListener("keypress", function(event){  //if enter will be pressed to submit message
+            if(event.key === "Enter"){
+                // event.preventDefault();
+                getMessage();
+            }
+        });
+        
+        function getMessage(){
+
+            document.getElementsByClassName("result")[0].innerHTML = input.value;
+            input.value = "";
+        }
+    </script> 
+</body>
+</html>

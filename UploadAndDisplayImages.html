@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload and Display Images</title>
+</head>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .container{
+        height: 100vh;
+        border: 2px solid black;
+        background-color: antiquewhite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .input{
+        margin-bottom: 10px;
+    }
+    .display{
+        height: 300px;
+        width: 400px;
+        background-position: center;
+        background-size: cover;
+        border: 2px solid black;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <input type="file" class="input" accept="Image/png, Image/jpg">
+        <div class="display"></div>
+    </div>
+    
+    <script>
+
+        const display = document.getElementsByClassName("display")[0];
+        var img = "";
+
+        display.addEventListener("change",function(){
+            const reader = new FileReader;
+            reader.addEventListener("load", ()=>{
+                img = reader.result;
+                document.getElementById("display").style.backgroundImage = `url(${img})`;
+            }); 
+            console.log("done");
+            reader.readAsDataURL(this.files[0]);
+        });
+// :(
+    </script>
+</body>
+</html>

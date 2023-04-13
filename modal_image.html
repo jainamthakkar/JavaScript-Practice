@@ -1,0 +1,41 @@
+<!-- 
+    For logo :-
+        mix-blend-mode: multiply;
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Image</title>
+</head>
+
+<body style="background: linear-gradient(white, black); background-repeat: no-repeat; height: 100vh;">
+
+    <img src="/Img_bg_tmp/lion_logo.png" class="logo" onclick="show()" style="mix-blend-mode: multiply; transform: scaleX(-1);" alt="">
+    <div class="container">
+        <span class="close" onclick="close()" style="border: 3px solid red; padding: 5px; cursor: pointer;">&times;</span>
+        <img src="" alt="" class="pic" style="height: 200px; width: 300px; display: none;">
+    </div>
+
+    <script>
+
+        var logo = document.getElementsByClassName("logo")[0];
+        var close = document.getElementsByClassName("close")[0];
+        var pic = document.getElementsByClassName("pic")[0];
+        function show(){
+            pic.style.display = "block";
+            pic.src = "/Food_Delivery/bg.jpg";
+            // close.innerHTML = "&times";
+        }
+
+        function close(){             
+            pic.style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

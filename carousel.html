@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel</title>
+</head>
+
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    .container {
+        /* margin: auto; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 70%;
+        height: 500px;
+        position: relative;
+    }
+
+    .img {
+        display: none;
+        object-fit: cover;
+        object-position: center;
+        /* height: 70px; */
+        /* width: 100px; */
+    }
+
+    /* Next & previous buttons */
+    #prev {
+        position: absolute;
+        top: 43%;
+        left: 0;
+        cursor: pointer;
+        padding: 16px;
+        color: white;
+        font-weight: bold;
+        font-size: 2rem;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+    }
+
+    #next {
+        position: absolute;
+        top: 43%;
+        right: 0;
+        cursor: pointer;
+        padding: 16px;
+        color: #fff;
+        font-weight: bold;
+        font-size: 2rem;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+    }
+
+    #prev:hover,
+    #next:hover {
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .dots {
+        text-align: center;
+        margin-top: 2%;
+    }
+
+    .dot {
+        display: inline-block;
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        /* transition from one do to the next */
+        transition: background-color 0.6s ease;
+    }
+
+    /* We create this class with JavaScript. It makes the current dot darker gray */
+    .active {
+        background-color: #717171;
+    }
+
+    /* create fade animation when switching between images */
+    .fade {
+        /* Animation support for different browsers */
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1.5s;
+        animation-name: fade;
+        animation-duration: 1.5s;
+    }
+
+    @-webkit-keyframes fade {
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    @keyframes fade {
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    @media(max-width:768px) {
+        .container {
+            width: 100%;
+        }
+    }
+</style>
+
+<body>
+
+    <div class="container">
+
+        <div class="img1">
+            <img src="/Img_bg_tmp/unsplash_nature (1).jpg" alt="img1" class="img fade">
+        </div>
+        <div class="img2">
+            <img src="/Img_bg_tmp/unsplash_nature (2).jpg" alt="img2" class="img fade">
+        </div>
+        <div class="img3">
+            <img src="/Img_bg_tmp/unsplash_nature (3).jpg" alt="img3" class="img fade">
+        </div>
+        <div class="img4">
+            <img src="/Img_bg_tmp/unsplash_nature (4).jpg" alt="img4" class="img fade">
+        </div>
+
+        <a id="prev" onclick="show_slide(-1)">&#10094;</a>
+        <a id="next" onclick="show_slide(1)">&#10095;</a>
+
+        <div class="dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+
+
+    <!-- <button>&#8656</button>
+            <button>&#8658</button>
+            <input type="radio"><input type="radio"><input type="radio"><input type="radio">
+        </div> -->
+    <!-- <div class="dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div> -->
+
+    <script>
+        var index = 0;
+
+        show_slide = (i) => {
+            //increment/decrement slide index
+            index += i;
+
+            //grab all the images
+            var images = document.getElementsByClassName("img");
+            //grab all the dots
+            var dots = document.getElementsByClassName("dot");
+
+            // hide all the images
+            for (i = 0; i < images.length; i++){
+                images[i].style.display = "none";
+            }
+            // remove the active class from the dot
+            for (i = 0; i < dots.length; i++)
+                dots[i].className = dots[i].className.replace(" active", "");
+
+            // if index is greater than the amount of images (set it to zero)
+            if (index > images.length - 1)
+                index = 0;
+
+            // if index is less than zero (set it to the length of images)
+            if (index < 0)
+                index = images.length - 1;
+
+            // only display the image that's next or previous
+            images[index].style.display = "block";
+            // only make the current dot active
+            dots[index].className += " active";
+
+        }
+
+        window.addEventListener("onload", show_slide(index));
+
+    </script>
+</body>
+
+</html>
